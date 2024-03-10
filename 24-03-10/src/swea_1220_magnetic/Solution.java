@@ -24,13 +24,15 @@ public class Solution {
 							if(arr[k][i] == 2) {
 								cnt++;
 								continue S;
+							}else if(arr[k][i] == 1) {
+								continue S;
 							}
 						}
 					}
 				}
-				System.out.println(cnt);
+//				System.out.println(cnt);
 			}
-//			System.out.println(cnt);
+			System.out.println("#" + tc + " " + cnt);
 			
 		}
 	}
