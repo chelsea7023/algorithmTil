@@ -63,7 +63,7 @@ public class Main {
 	}
 
 	static boolean check(int x) {
-		return x >= 0 && x <= F;
+		return x > 0 && x <= F;
 	}
 
 }
