@@ -64,9 +64,7 @@ public class Solution {
 
 			int[] nums = new int[] { 0, 1 };
 
-			OUT:
-			while (!flag) {
-
+			OUT: while (!flag) {
 				for (int i = 0; i < result.size(); i++) {
 
 					for (int j = 0; j < result.get(i).size(); j++) {
@@ -76,6 +74,9 @@ public class Solution {
 
 					answer = result.get(i).size();
 					flag = check();
+					if (flag) {
+						break OUT;
+					}
 					map = copy;
 
 				}
