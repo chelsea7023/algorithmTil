@@ -73,7 +73,7 @@ public class Solution {
 					result.add(list);
 				}
 			}
-
+			
 			Collections.sort(result, Comparator.comparingInt(List::size));
 
 			combination = new ArrayList<>();
