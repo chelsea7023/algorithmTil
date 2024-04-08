@@ -1,7 +1,7 @@
 package BOJ_16987_계란으로계란치기;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayList;
+import java.util.List;
 
 /* 
  * 계란의 값으로 주어지는 것은 왼쪽 값 내구도, 오른쪽 값 무게
@@ -16,20 +16,27 @@ import java.util.Scanner;
 
 public class Main {
 
+	static int n, ans;
+	static int[][] arr;
+	
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
-		
+
 		int n = sc.nextInt();
 		
-		Queue<int[]> egg = new LinkedList<>();
+		arr = new int[n][2];
 		
-		for(int i = 0; i < n; i++) {
-			int x = sc.nextInt();
-			int y = sc.nextInt();
-			
-			egg.add(new int[] {x, y});
-		}
+		for(int 9)
+
+	}
+	static void dfs(int x) {
+		var curr = list.get(x);
+		int nx = curr[0];
+		int ny = curr[1];
+		
+		
+		
 		
 		
 		
