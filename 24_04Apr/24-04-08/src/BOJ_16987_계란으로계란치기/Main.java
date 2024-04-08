@@ -16,31 +16,53 @@ import java.util.Scanner;
 
 public class Main {
 
-	static int n, ans;
-	static int[][] arr;
-	
+	static int N, ans;
+	static List<int[]> list = new ArrayList<>();
+	static boolean[] visited;
+
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
 
-		int n = sc.nextInt();
-		
-		arr = new int[n][2];
-		
-		for(int 9)
+		N = sc.nextInt();
+
+		visited = new boolean[N];
+
+		for (int i = 0; i < N; i++) {
+			int x = sc.nextInt();
+			int y = sc.nextInt();
+
+			list.add(new int[] { x, y });
+		}
+
+		dfs(0, 0);
+
+		System.out.println(ans);
 
 	}
-	static void dfs(int x) {
-		var curr = list.get(x);
-		int nx = curr[0];
-		int ny = curr[1];
+
+	static void dfs(int dp, int max) {
+
+		if (dp == N) {
+			if (max > ans) {
+				ans = max;
+			}
+		}
 		
-		
-		
-		
-		
-		
-		
+		if(list.get(x)[0] <= 0) {
+			dfs(x + 1, dp, max);
+		}
+
+		for (int i = 0; i < N; i++) {
+			// 같은 계란이거나 이미 깨진거면 패스하는 것
+			if ((i == x) || visited[i])
+				continue;
+			
+			
+			
+
+		}
+
 	}
 
 }
