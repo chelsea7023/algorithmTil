@@ -24,8 +24,8 @@ public class Main {
 		while (!road.isEmpty()) {
 			int num = road.poll();
 			int cnt = 1;
-			if (num + road.peek() <= L && cnt <= w && road.isEmpty()) {
-				num += road.peek();
+			if (num + road.peek() <= L && cnt <= w && !road.isEmpty()) {
+				num += road.poll();
 				cnt++;
 			}
 			time++;

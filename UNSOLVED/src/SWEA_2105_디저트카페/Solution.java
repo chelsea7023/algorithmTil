@@ -16,7 +16,7 @@ public class Solution {
 	static boolean flag = false;
 	static List<Integer> list = new ArrayList<>();
 	static boolean[][] visited;
-	static List<Integer> check = new ArrayList<>();
+	static List<Integer> check;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -35,33 +35,46 @@ public class Solution {
 					map[i][j] = Integer.parseInt(st.nextToken());
 				}
 			}
-			
-			for(int i = 0; i < N; i++) {
-				for(int j = 0; j < N; j++) {
+
+			for (int i = 0; i < N; i++) {
+
+				for (int j = 0; j < N; j++) {
+
 					check = new ArrayList<>();
+					visited = new boolean[N][N];
+					check.add(map[i][j]);
+					visited[i][j] = true;
 					dfs(i, j, i, j, 1);
+
 				}
 			}
-			
+
 			System.out.println(list);
 
 		}
 	}
 
-	static void dfs(int x, int y, int r, int c, int num) {
-		
-		if(visited[x][y] && x == r && y == c) {
-			list.add(num);
+	static void dfs(int x, int y, int r, int c, int dp) {
+
+		if (x == r && y == c && visited[x][y] && dp > 2) {
+			list.add(dp);
+			return;
 		}
-		
+
 		for (int d = 0; d < 4; d++) {
+
 			int nx = x + di[d];
 			int ny = y + dj[d];
+
 			if (check(nx, ny) && !visited[nx][ny] && !check.contains(map[nx][ny])) {
 				visited[nx][ny] = true;
-				dfs(nx, ny, r, c, num + 1);
+				dfs(nx, ny, r, c, dp + 1);
+
+			} else if (nx == r && ny == c && dp > 2) {
+				dfs(nx, ny, r, c, dp + 1);
 			}
 		}
+
 	}
 
 	static boolean check(int x, int y) {
