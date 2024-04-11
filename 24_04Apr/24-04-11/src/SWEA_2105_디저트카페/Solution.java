@@ -4,13 +4,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Solution {
 
-	static int N;
+	static int N, r, c, ans;
 	static int[] di = { 1, 1, -1, -1 };
 	static int[] dj = { 1, -1, -1, 1 };
 	static int[][] map;
@@ -42,44 +43,40 @@ public class Solution {
 
 					List<Integer> check = new ArrayList<>();
 
-					visited[i][j] = true;
-					check.add(map[i][j]);
-
-					dfs(map, visited, check, i, j, i, j, 1);
-
+					dfs(visited, check, i, j, i, j, 1);
+										
 				}
 			}
+			
+			System.out.println(ans);
 
-			if (!list.isEmpty()) {
-				Collections.sort(list, Collections.reverseOrder());
-				System.out.print("#" + tc + " " + list.get(0));
-			} else {
-				System.out.println(-1);
-			}
 		}
 	}
 
-	static void dfs(int[][] arr, boolean[][] visited, List<Integer> num, int x, int y, int r, int c, int dp) {
-		if (x == r && y == c && visited[x][y] && dp >= 4) {
-			list.add(dp);
-			return;
-		}
+	static void dfs(boolean[][] visited, List<Integer> list, int x, int y, int goal_x, int goal_y, int dp) {
 
+		if(x == goal_x && y == goal_y && dp >= 4) {
+			if(dp > ans) {
+				ans = dp;
+			}
+		}
+		
+		
+		
 		for (int d = 0; d < 4; d++) {
 			int nx = x + di[d];
 			int ny = y + dj[d];
-
-			if (check(nx, ny) && !visited[nx][ny] && !num.contains(map[nx][ny])) {
+			if (!visited[nx][ny] && check(nx, ny) && !list.contains(map[nx][ny])) {
 				visited[nx][ny] = true;
-				num.add(map[nx][ny]);
-				dfs(arr, visited, num, nx, ny, r, c, dp + 1);
-//				visited[nx][ny] = false;
-				num.remove(Integer.valueOf(map[nx][ny]));
-			} else if (nx == r && ny == c && dp > 2) {
-				dfs(arr, visited, num, nx, ny, r, c, dp);
+				list.add(map[nx][ny]);
+				dfs(visited, list, nx, ny, goal_x, goal_y, dp + 1);
+				visited[nx][ny] = false;
+				list.remove(Integer.valueOf(map[nx][ny]));
+			}if(nx == goal_x && ny == goal_y) {
+				dfs(visited, list, nx, ny, goal_x, goal_y, dp);
 			}
-
 		}
+
 	}
 
 	static boolean check(int x, int y) {
