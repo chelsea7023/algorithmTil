@@ -56,9 +56,8 @@ public class Main {
 		while (!newChicken.isEmpty()) {
 
 			var curr = newChicken.poll();
-			int num = curr.size();
 
-			for (int i = 0; i < num; i++) {
+			for (int i = 0; i < curr.size(); i++) {
 				var n_chicken = curr.get(i);
 
 				arr[n_chicken[0]][n_chicken[1]] = 2;
@@ -73,7 +72,7 @@ public class Main {
 				}
 			}
 			ans = 0;
-
+			visited2 = new boolean[N][N];
 			bfs();
 
 			if (ans < min) {
@@ -85,9 +84,11 @@ public class Main {
 			}
 
 		}
+//		System.out.println(ans);
 
 	}
 
+	// 조합 만드는 식
 	static void comb(List<int[]> list, boolean[] visited, int start, int dp, int r) {
 		if (dp == r) {
 			for (int i = 0; i < list.size(); i++) {
@@ -95,10 +96,16 @@ public class Main {
 					closed.add(list.get(i));
 				}
 			}
-			for (int[] x : closed) {
-				System.out.println(Arrays.toString(x));
-			}
+
+//			for (int[] x : closed) {
+//				System.out.print(Arrays.toString(x) + " ");
+//			}
+//			System.out.println();
+
 			newChicken.add(closed);
+
+			closed.removeAll(closed);
+
 			return;
 		}
 
