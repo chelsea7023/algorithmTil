@@ -1,15 +1,17 @@
-package BOJ_1654_³ª¹«ÀÚ¸£±â;
+package BOJ_1654_ë‚˜ë¬´ìë¥´ê¸°;
 
 import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int N = sc.nextInt(); // ³ª¹« ¼ö
-		int M = sc.nextInt(); // ¿øÇÏ´Â ³ª¹« Ä¿ÆÃ ±æÀÌ
+		int N = sc.nextInt();
+		int M = sc.nextInt();
 
 		int end = 0;
+
 		int[] arr = new int[N];
+
 		for (int i = 0; i < N; i++) {
 			arr[i] = sc.nextInt();
 			if (end < arr[i]) {
@@ -17,24 +19,29 @@ public class Main {
 			}
 		}
 		int start = 0;
+		int mid = 0;
 
 		while (start <= end) {
-			int mid = (start + end) / 2;
-			int tree = 0;
+			mid = (start + end) / 2;
+			long tree = 0;
 
 			for (int i = 0; i < N; i++) {
-				tree += (arr[i] - mid);
+				int num = arr[i] - mid;
+				if (num < 0) {
+					num = 0;
+				}
+				tree += num;
+
 			}
 
-			if (tree > M) {
+			if (tree >= M) {
 				start = mid + 1;
 			} else {
 				end = mid - 1;
 			}
-
 		}
 
-		System.out.println(start + 1);
+		System.out.println(end);
 
 	}
 }

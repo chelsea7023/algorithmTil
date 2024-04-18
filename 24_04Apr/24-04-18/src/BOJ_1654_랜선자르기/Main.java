@@ -1,4 +1,4 @@
-package BOJ_1654_·£¼±ÀÚ¸£±â;
+package BOJ_1654_ëœì„ ìë¥´ê¸°;
 
 import java.util.Scanner;
 
@@ -7,14 +7,8 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 
 		int N = sc.nextInt();
-		// ·£¼±ÀÇ °¹¼ö
 		int K = sc.nextInt();
-		// ÇÊ¿äÇÑ ·£¼±ÀÇ ¼ö
 
-		/*
-		 * ÇÊ¿äÇÑ ·£¼±ÀÇ °¹¼ö¸¦ È®º¸ÇßÀ»¶§ °¡´ÉÇÑ ÃÖ´ë ±æÀÌÀÇ °ªÀ» ±¸ÇÏ±â
-		 * 
-		 */
 
 		int[] arr = new int[N];
 		long sum = 0;
@@ -41,7 +35,7 @@ public class Main {
 //			System.out.println(cnt);
 			if (cnt < K) {
 				end = mid - 1;
-			} else { // °°°Å³ª ÀÌ»ó
+			} else { 
 				start = mid + 1;
 			}
 		}
