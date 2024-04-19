@@ -6,7 +6,9 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main3 {
+public class Main_Fail_1 {
+
+	static int cnt;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -30,7 +32,9 @@ public class Main3 {
 			check[i] = Integer.parseInt(st.nextToken());
 		}
 
+
 		for (int i = 0; i < check.length; i++) {
+			cnt = 0;
 			BS(card, check[i]);
 
 		}
@@ -38,44 +42,33 @@ public class Main3 {
 
 	static void BS(int[] arr, int key) {
 		int start = 0;
+		int start2 = 0;
 		int end = arr.length - 1;
+		int end2 = arr.length - 1;
 		int mid = 0;
+		int mid2 = 0;
 		boolean flag = false;
 		while (start <= end) {
+
 			mid = (start + end) / 2;
 			if (key >= arr[mid]) {
 				if (key == arr[mid]) {
 					flag = true;
 				}
 				start = mid + 1;
-
 			} else {
 				end = mid - 1;
 			}
-		}
 
-		int end_point = end;
-
-		start = 0;
-		end = arr.length - 1;
-//
-		while (start <= end) {
-			mid = (start + end) / 2;
-			if (key <= arr[mid]) {
-				if (key == arr[mid]) {
-					flag = true;
-				}
-				end = mid - 1;
-
+			mid2 = (start2 + end2) / 2;
+			if (key <= arr[mid2]) {
+				end2 = mid2 - 1;
 			} else {
-				start = mid + 1;
+				start2 = mid2 + 1;
 			}
 		}
-
-		int start_point = end;
-
 		if (flag) {
-			System.out.print(end_point - start_point + " ");
+			System.out.print(start - start2 + " ");
 		} else {
 			System.out.print(0 + " ");
 		}

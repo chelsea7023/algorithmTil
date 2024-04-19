@@ -8,9 +8,7 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 
 		int N = sc.nextInt();
-		// 상근이가 가지고 있는 카드의 수
 		int[] card = new int[N];
-		// 상근이가 가지고 있는 카드 종류
 
 		for (int i = 0; i < N; i++) {
 			card[i] = sc.nextInt();
@@ -18,7 +16,6 @@ public class Main {
 		Arrays.sort(card);
 
 		int M = sc.nextInt();
-		// 확인해야할 숫자 수
 		int[] check = new int[M];
 
 		for (int i = 0; i < M; i++) {

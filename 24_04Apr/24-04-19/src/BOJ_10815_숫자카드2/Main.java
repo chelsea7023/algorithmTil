@@ -4,11 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class Main {
-
-	static int cnt;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,7 +22,7 @@ public class Main {
 		}
 
 		Arrays.sort(card);
-//		System.out.println(Arrays.toString(card));
+
 		st = new StringTokenizer(br.readLine());
 		int M = Integer.parseInt(st.nextToken());
 		int[] check = new int[M];
@@ -32,40 +31,26 @@ public class Main {
 			check[i] = Integer.parseInt(st.nextToken());
 		}
 
-		for (int i = 0; i < check.length; i++) {
-			cnt = 0;
-			BS(card, check[i]);
-
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		for (int i = 0; i < N; i++) {
+			int cnt = 1;
+			if (map.containsKey(card[i])) {
+				cnt = map.get(card[i]) + 1;
+			}
+			map.put(card[i], cnt);
 		}
-	}
 
-	static void BS(int[] arr, int key) {
-		int start = 0;
-		int end = arr.length - 1;
-		int mid = 0;
-		boolean flag = false;
-		THIS: while (start <= end) {
-			mid = (start + end) / 2;
-			if (key >= arr[mid]) {
-				if (key == arr[mid]) {
-					flag = true;
-					cnt++;
-					if (mid + 1 <= arr.length - 1 && key != arr[mid + 1]) {
-						end = mid - 1;
-						continue THIS;
-					}
-				}
-				start = mid + 1;
+		StringBuilder sb = new StringBuilder("");
 
+		for (int i = 0; i < M; i++) {
+			if (map.get(check[i]) == null) {
+				sb.append("0 ");
 			} else {
-				end = mid - 1;
+				sb.append(Integer.toString(map.get(check[i])) + " ");
+
 			}
 		}
-		if (flag) {
-			System.out.print(cnt + " ");
-		} else {
-			System.out.print(0 + " ");
-		}
+		System.out.println(sb);
 
 	}
 
