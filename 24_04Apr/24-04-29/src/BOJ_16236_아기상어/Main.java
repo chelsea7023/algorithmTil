@@ -1,8 +1,9 @@
 package BOJ_16236_아기상어;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Scanner;
 
@@ -21,6 +22,14 @@ import java.util.Scanner;
 2 1 2 3 4 5
 3 2 1 6 5 4
 6 6 6 6 6 6
+
+반례
+5
+3 3 3 3 3
+3 3 3 3 3
+3 2 9 2 1
+3 1 3 3 3
+3 3 3 3 3
  */
 
 public class Main {
@@ -49,22 +58,18 @@ public class Main {
 			}
 		}
 		int[] current = new int[5];
-
+		int num = Integer.MIN_VALUE;
 		while (!flag) {
 			current = bfs();
-//			System.out.println(Arrays.toString(current));
-//			for (int i = 0; i < N; i++) {
-//				for (int j = 0; j < N; j++) {
-//					System.out.print(map[i][j] + " ");
-//				}
-//				System.out.println();
-//			}
-//			System.out.println();
 			flag = check_fish(current[2]);
+			if (num < current[3]) {
+				num = current[3];
+			}
+
 			fish.add(new int[] { current[0], current[1], current[2], current[3], current[4] });
 		}
 
-		System.out.println(current[3]);
+		System.out.println(num);
 	}
 
 	static int[] bfs() {
@@ -78,8 +83,19 @@ public class Main {
 
 		boolean[][] visited = new boolean[N][N];
 		visited[x][y] = true;
-		Queue<int[]> q = new LinkedList<>();
-		List<int[]> list = new ArrayList<>();
+		Queue<int[]> q = new PriorityQueue<>(new Comparator<int[]>() {
+			@Override
+			public int compare(int[] a, int[] b) {
+				if (a[3] != b[3]) { // 거리가 다르면 거리를 기준으로 비교
+					return Integer.compare(a[3], b[3]);
+				} else if (a[0] != b[0]) { // 위쪽이 다르면 위쪽을 기준으로 비교
+					return Integer.compare(a[0], b[0]);
+				} else { // 위쪽이 같을 경우 왼쪽을 기준으로 비교
+					return Integer.compare(a[1], b[1]);
+				}
+			}
+		});
+
 		q.add(new int[] { x, y, size, move, fish_cnt });
 		int[] now = new int[5];
 
@@ -103,6 +119,7 @@ public class Main {
 				now[3] = now_move;
 				now[4] = now_fishCnt;
 				map[now_x][now_y] = 0;
+				break;
 			}
 
 			for (int d = 0; d < 4; d++) {
