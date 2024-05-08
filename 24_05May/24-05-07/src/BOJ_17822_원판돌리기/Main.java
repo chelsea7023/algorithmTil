@@ -53,10 +53,10 @@ public class Main {
 		int sum = 0;
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < M; j++) {
-				System.out.print(copy[i][j] + " ");
+//				System.out.print(copy[i][j] + " ");
 				sum += copy[i][j];
 			}
-			System.out.println();
+//			System.out.println();
 		}
 		System.out.println(sum);
 	}
@@ -155,8 +155,14 @@ public class Main {
 			for (int j = 0; j < M; j++) {
 				if (copy[i][j] > 0 && copy[i][j] > sum / cnt) {
 					copy[i][j] -= 1;
-				} else if (copy[i][j] > 0 && copy[i][j] <= sum / cnt) {
-					copy[i][j] += 1;
+				} else if (copy[i][j] > 0 && sum % cnt > 0) {
+					if (copy[i][j] <= sum / cnt) {
+						copy[i][j] += 1;
+					}
+				} else if (copy[i][j] > 0 && sum % cnt == 0) {
+					if (copy[i][j] < sum / cnt) {
+						copy[i][j] += 1;
+					}
 				}
 			}
 		}
@@ -180,14 +186,18 @@ public class Main {
 					q.add(new int[] { nx, ny });
 					copy[nx][ny] = 0;
 				} else if (ny == -1) {
-					ny += N;
-					if (check(nx, ny) && copy[nx][ny] == r) {
+					ny += M;
+					if (check(nx, ny) && copy[nx][ny] == r && !visited[nx][ny]) {
+						visited[nx][ny] = true;
+
 						q.add(new int[] { nx, ny });
 						copy[nx][ny] = 0;
 					}
-				} else if (ny == N) {
-					ny -= N;
-					if (check(nx, ny) && copy[nx][ny] == r) {
+				} else if (ny == M) {
+					ny -= M;
+					if (check(nx, ny) && copy[nx][ny] == r && !visited[nx][ny]) {
+						visited[nx][ny] = true;
+
 						q.add(new int[] { nx, ny });
 						copy[nx][ny] = 0;
 					}
