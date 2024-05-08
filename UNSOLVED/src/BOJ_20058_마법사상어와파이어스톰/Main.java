@@ -43,7 +43,7 @@ public class Main {
 	static void turn(int x) {
 		for (int i = 1; i <= num; i++) {
 			for (int j = 1; j <= num; j++) {
-				map[i][j] = copy[][i];
+				map[i][j] = copy[][i % x];
 			}
 		}
 	}
