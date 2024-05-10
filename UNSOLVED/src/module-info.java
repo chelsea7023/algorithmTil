@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * 
- */
-module UNSOLVED {
-	requires rt;
-}
