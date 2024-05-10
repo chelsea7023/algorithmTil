@@ -10,12 +10,9 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int N = sc.nextInt();
-		// 사람 수
 		int M = sc.nextInt();
-		// 파티 수
 
 		int T = sc.nextInt();
-		// 진실을 아는 사람 수
 		List<Integer> truth = new ArrayList<>();
 		for (int i = 0; i < T; i++) {
 			truth.add(sc.nextInt());
@@ -43,8 +40,6 @@ public class Main {
 //		for (int[] x : total) {
 //			System.out.println(Arrays.toString(x));
 //		}
-
-		// 그냥 먼저 진실을 아는 사람들을 다 포함 시켜버려야겠다 truth에다가
 
 		THIS: for (int i = 0; i < total.size(); i++) {
 			int[] curr = total.get(i);
