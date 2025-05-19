@@ -72,6 +72,8 @@ public class Main {
                 tmp.gold = medal.gold;
                 tmp.silver = medal.silver;
                 tmp.bronze = medal.bronze;
+                sequence += cnt;
+                cnt = 0;
             } else{
                 cnt++;
                 sequence--;
